@@ -51,3 +51,17 @@ create table solution
         references home_work (id)
     );
 alter table solution owner to postgres;
+
+ALTER TABLE course
+ALTER  COLUMN title TYPE VARCHAR(50),
+ALTER  COLUMN status TYPE VARCHAR(50);
+ALTER TABLE users
+ALTER COLUMN email TYPE VARCHAR(50),
+ALTER COLUMN status TYPE VARCHAR(50),
+ALTER COLUMN first_name TYPE VARCHAR(50),
+ALTER COLUMN last_name TYPE VARCHAR(50);
+ALTER TABLE solution
+    ALTER COLUMN status TYPE VARCHAR(50);
+ALTER TABLE home_work
+    ALTER COLUMN title TYPE VARCHAR(50),
+    ALTER COLUMN file_path TYPE VARCHAR(100);

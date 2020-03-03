@@ -1,12 +1,20 @@
 package com.courses.management.common;
 
-import com.courses.management.course.CourseService;
+import com.courses.management.course.CreateCourse;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class MainController {
     private View view;
+    private List<Command> commands;
 
     public MainController(View view) {
         this.view = view;
+        this.commands = Arrays.asList(
+                new CreateCourse(view),
+                new Help(view)
+        );
     }
 
     public void read() {
@@ -17,25 +25,13 @@ public class MainController {
         }
     }
 
-    private void doCommand(String read) {
-        switch (read) {
-            case "help": {
-                view.write("Help information");
-                break;
-            }
-            case "create_course": {
-                createCourse();
-                break;
-            }
-            default: {
-                view.write("Enter the correct command");
+    private void doCommand(String input) {
+        for (Command command : commands) {
+            if (command.canProcess(input)) {
+                command.process();
                 break;
             }
         }
-    }
-
-    private void createCourse() {
-        CourseService service = new CourseService(view);
-        service.createCourse();
+        view.write("Enter a command or use help to list all available commands");
     }
 }
