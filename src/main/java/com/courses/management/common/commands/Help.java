@@ -1,6 +1,9 @@
-package com.courses.management.common;
+package com.courses.management.common.commands;
 
-public class Help implements Command{
+import com.courses.management.common.Command;
+import com.courses.management.common.View;
+
+public class Help implements Command {
     private View view;
     public Help(View view) {
         this.view = view;
